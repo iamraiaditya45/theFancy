@@ -11,6 +11,7 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Dropdown from './Dropdown';
 import Dropdown2 from './Dropdown2';
+import Drawer from './Drawer';
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
@@ -99,7 +100,7 @@ export default function ButtonAppBar() {
             THE FANCY 
           </Typography>
           <PersonOutlineOutlinedIcon className={classes.personIcon} />
-          <WorkOutlineOutlinedIcon className={classes.workIcon} />
+          <WorkOutlineOutlinedIcon className={classes.workIcon} onClick={Drawer} ></WorkOutlineOutlinedIcon>
         </div>
         <div className={classes.listClass}>
           <List className={classes.flexContainer}>

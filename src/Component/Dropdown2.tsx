@@ -65,14 +65,14 @@ export default function SimpleMenu() {
   }
   function handleLeave() {
 
-    console.log("handleLeave");
+    console.log("handleHover");
   
 
     setAnchorEl(null);
   }
   return (
     <div>
-      <Button className={classes.Btn} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+      <Button className={classes.Btn} onMouseEnter={handleHover} >
       GIFTS      </Button>
       <Menu
         // id="simple-menu"
