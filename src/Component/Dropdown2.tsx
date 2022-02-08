@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Menu, MenuItem } from "@mui/material";
-import Data from "../data.json";
+import { Menu} from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
 
@@ -14,9 +13,13 @@ const useStyles = makeStyles(() => ({
     "&.css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
       color: "white",
       fontSize: "16px",
-      width: "100px",
+      width: "80px",
       marginTop: "2px",
       // backgroundColor: "white",
+      '&:hover': {
+        background: 'white',
+        color:"black",
+      },
     },
   },
   menuAreas: {
@@ -46,33 +49,33 @@ const useStyles = makeStyles(() => ({
         },
   }
 }));
-export default function SimpleMenu() {
+export default function Dropdown2() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
-  const [location, setLocation] = React.useState("");
-  const [branchDisplay, setBranchDisplay] = React.useState(false);
+  // const [location, setLocation] = React.useState("");
+  // const [branchDisplay, setBranchDisplay] = React.useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  function handleHover(event: any) {
-    console.log("handleHover");
-    setAnchorEl(event.currentTarget);
-  }
-  function handleLeave() {
+  // function handleHover(event: any) {
+  //   console.log("handleHover");
+  //   setAnchorEl(event.currentTarget);
+  // }
+  // function handleLeave() {
 
-    console.log("handleLeave");
+  //   console.log("handleLeave");
   
 
-    setAnchorEl(null);
-  }
+  //   setAnchorEl(null);
+  // }
   return (
     <div>
-      <Button className={classes.Btn} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+      <Button className={classes.Btn} onClick={handleClick} >
       GIFTS      </Button>
       <Menu
         // id="simple-menu"

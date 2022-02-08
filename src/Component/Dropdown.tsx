@@ -156,6 +156,22 @@ import { Button } from '@mui/material';
  import { makeStyles } from "@mui/styles";
  import { Menu , MenuItem} from '@mui/material';
  const useStyles = makeStyles({
+  Btn: {
+    backgroundColor: "white",
+    color: "white",
+    fontSize: 17,
+    "&.css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
+      color: "white",
+      fontSize: "16px",
+      width: "130px",
+      marginTop: "2px",
+      // backgroundColor: "white",
+      '&:hover': {
+        background: 'white',
+        color:"black",
+      },
+    },
+  },
   customWidth: {
       '& div': {
           width: '',
@@ -176,8 +192,8 @@ export default function SimpleMenu() {
   const classes = useStyles();
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Open Menu
+      <Button className={classes.Btn} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        What's New
       </Button>
 <Menu
          id="simple-menu"
@@ -188,9 +204,10 @@ export default function SimpleMenu() {
          className={classes.customWidth}
          onMouseOut={handleClose}
        >
-         <MenuItem onClick={handleClose}>Profile</MenuItem>
-         <MenuItem onClick={handleClose}>My account</MenuItem>
-         <MenuItem onClick={handleClose}>Logout</MenuItem>
+         <MenuItem onClick={handleClose}>Just In</MenuItem>
+         <MenuItem onClick={handleClose}>Featured Collection</MenuItem>
+         <MenuItem onClick={handleClose}>On out Raddar: Brands to note</MenuItem>
+         <MenuItem onClick={handleClose}>Gift Guide Quiz</MenuItem>
        </Menu>
       
     </div>

@@ -11,6 +11,9 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Dropdown from './Dropdown';
 import Dropdown2 from './Dropdown2';
+import Dropdown1 from "./Dropdown1";
+import Lifestyles from "./LifeStyle";
+import Beauty from "./Beauty";
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
@@ -55,6 +58,17 @@ const useStyles = makeStyles({
       
     },
   },
+  home: {
+    width: "110px",
+  //   '&:hover': {
+  //     background: 'white',
+  //     color:"black",
+  // },
+  //   "&.css-10hburv-MuiTypography-root": {
+  //     fontWeight: "bold",
+      
+  //   },
+  },
   beauty: {
     width: "175px",
   },
@@ -84,7 +98,10 @@ const useStyles = makeStyles({
     },
   },
   gift: {
-    width: "80px",
+    width: "110px",
+  },
+  lifestyles: {
+    width: "110px",
   },
 });
 
@@ -107,11 +124,11 @@ export default function ButtonAppBar() {
               <ListItemText className={classes.whats}><Dropdown/></ListItemText>
             </ListItem>
             <ListItem className={classes.gift}><Dropdown2/></ListItem>
-            <ListItem><Dropdown2/></ListItem>
-            <ListItem>LIFESTYLE</ListItem>
+            <ListItem className={classes.home}><Dropdown1/></ListItem>
+            <ListItem className={classes.lifestyles} ><Lifestyles/></ListItem>
             <ListItem>
               <ListItemText className={classes.beauty}>
-                BEAUTY & WELLNESS
+                <Beauty/>
               </ListItemText>
             </ListItem>
             <ListItem>WOMEN</ListItem>
