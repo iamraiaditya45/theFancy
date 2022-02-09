@@ -11,7 +11,11 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Dropdown from './Dropdown';
 import Dropdown2 from './Dropdown2';
-import Drawer from './Drawer';
+import Drawers from './DrawerContainer';
+import Drawer from '@mui/material/Drawer';
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton , Divider} from "@mui/material";
+import CartItem from './cartItem'
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
@@ -87,10 +91,53 @@ const useStyles = makeStyles({
   gift: {
     width: "80px",
   },
+  drawerPaper: {
+    width: "450px",
+    zIndex: 0,
+
+    '&."MuiPaper-root MuiDrawer-paper makeStyles-drawerPaper-91 MuiDrawer-paperAnchorRight MuiPaper-elevation16" ':
+      {
+        backgroundColor: "red",
+        border: "none",
+        padding: "0px",
+      },
+  },
+  divider:{
+    '&.css-9mgopn-MuiDivider-root': {
+width:"410px",
+marginTop:"10px",
+marginBottom:"10px",
+marginLeft:"20px",
+color:"black",
+height:"10px"
+},
+},
+top:{
+display:"flex",
+justifyContent:"space-between",
+marginLeft:"20px",
+marginRight:"20px",
+marginTop:"60px"
+},
+cart:{
+    "&.css-ahj2mt-MuiTypography-root":{
+fontSize:"26px",
+fontFamily:" sans-serif",
+fontWeight:"bold",
+    },
+}
 });
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+  const [openDrawer, setOpenDrawer] = React.useState<Boolean|any>(false);
+  const onClose = (event: any) => {
+    setOpenDrawer(false)
+  };
+  const handleClick=(event:any)=>{
+    setOpenDrawer(!openDrawer)
+    console.log("hjjj",openDrawer)
+  }
   return (
     <AppBar position="static" className={classes.mainContainers}>
       <Toolbar className={classes.tool}>
@@ -99,8 +146,22 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.free}>
             THE FANCY 
           </Typography>
+          <Drawer
+        anchor="right"
+        classes={{ paper: classes.drawerPaper }}
+         onClose={() => setOpenDrawer(false)}
+        open={openDrawer}
+      >
+        <div className={classes.top}>
+        <Typography className={classes.cart}>Cart</Typography>
+        <CloseIcon onClick={onClose}/>
+        </div>
+        <Divider className={classes.divider}/>
+        <CartItem/>
+      </Drawer>
+
           <PersonOutlineOutlinedIcon className={classes.personIcon} />
-          <WorkOutlineOutlinedIcon className={classes.workIcon} onClick={Drawer} ></WorkOutlineOutlinedIcon>
+          <WorkOutlineOutlinedIcon className={classes.workIcon} onClick={handleClick} ></WorkOutlineOutlinedIcon>         
         </div>
         <div className={classes.listClass}>
           <List className={classes.flexContainer}>

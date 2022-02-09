@@ -88,7 +88,7 @@ const Cart = () => {
 //   );
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={classes.card}>
         <div className={classes.top}>
         <div className={classes.total}>
