@@ -13,20 +13,27 @@ const useStyles = makeStyles(() => ({
     "&.css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
       color: "white",
       fontSize: "16px",
-      width: "90px",
+      width: "80px",
+      height:'47px',
       marginTop: "2px",
-      // backgroundColor: "white",
       '&:hover': {
         background: 'white',
         color:"black",
+        borderBottom:'3px solid gray',
+        borderRadius:'0px',
       },
     },
+  },
+  btnHoverStyle:{
+    backgroundColor: 'white !important',
+    color:"black  !important",
+    borderBottom:'3px solid gray !important',
+    borderRadius:'0px !important',
   },
   menuAreas: {
     marginTop: "0px",
     '& div': {
-      width: '100%',
-      // paddingLeft:"100px",
+      width: '100%',  
        marginRight:"-100px"
   }
   },
@@ -37,34 +44,27 @@ const useStyles = makeStyles(() => ({
     marginLeft:0,
     border:'1px solid black',
   },
-
-  home:{
+home:{
     fontWeight:"bolder",
     marginBottom:"10px",
   },
-//   home1: {
-//     width: "110px",
-//     '&:hover': {
-//       background: 'white',
-//       color:"black",
-//   },
-//     "&.css-10hburv-MuiTypography-root": {
-//       fontWeight: "bold",
-      
-//     },
-//   },
   image:{
     height:'300px',
     width:'150px',
     margin:'5px'
   },
   listDiv:{
-      display:"flex",
-      justifyContent:"space-between",
-      "&.css-h4y409-MuiList-root":{
-        padding:"40px",
-        },
-  }
+    display:"flex",
+    justifyContent:"space-between",
+    "&.css-h4y409-MuiList-root":{
+      padding:"40px",
+      },
+},  
+  customWidth: {
+    '& div': {
+        width: '',
+    }
+}
 }));
 export default function Dropdown1() {
   const classes = useStyles();
@@ -74,13 +74,13 @@ export default function Dropdown1() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleClick =( event:any) => {
+  // const handleClick =( event:any) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  function handleHover(event: any) {
+    console.log("handleHover");
     setAnchorEl(event.currentTarget);
-  };
-//   function handleHover(event: any) {
-//     console.log("handleHover");
-//     setAnchorEl(event.currentTarget);
-//   }
+  }
 //   function handleLeave() {
 
 //     console.log("handleLeave");
@@ -90,19 +90,16 @@ export default function Dropdown1() {
 //   }
   return (
     <div>
-      <Button className={classes.Btn} onClick={handleClick}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover} >
       HOME      </Button>
-      <Menu
-        // id="simple-menu"
-        //  
+      <Menu 
+        id="simple-menu"
+        anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        //  onMouseOut={handleClose}
+        onClose={handleClose}
         className={classes.menuAreas}
-        style={{
-            color:'white'
-          // width: '1950px'
-        }}
+        onMouseOut={handleClose}
       > 
         <List onMouseLeave={handleClose} 
         className={classes.listDiv}>

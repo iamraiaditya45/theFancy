@@ -14,13 +14,21 @@ const useStyles = makeStyles(() => ({
       color: "white",
       fontSize: "16px",
       width: "80px",
+      height:'47px',
       marginTop: "2px",
-      // backgroundColor: "white",
       '&:hover': {
         background: 'white',
         color:"black",
+        borderBottom:'3px solid gray',
+        borderRadius:'0px',
       },
     },
+  },
+  btnHoverStyle:{
+    backgroundColor: 'white !important',
+    color:"black  !important",
+    borderBottom:'3px solid gray !important',
+    borderRadius:'0px !important',
   },
   menuAreas: {
     marginTop: "0px",
@@ -53,19 +61,19 @@ export default function Dropdown2() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleClick = (event: any) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
   // const [location, setLocation] = React.useState("");
   // const [branchDisplay, setBranchDisplay] = React.useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // function handleHover(event: any) {
-  //   console.log("handleHover");
-  //   setAnchorEl(event.currentTarget);
-  // }
+  function handleHover(event: any) {
+    console.log("handleHover");
+    setAnchorEl(event.currentTarget);
+  }
   // function handleLeave() {
 
   //   console.log("handleLeave");
@@ -75,7 +83,7 @@ export default function Dropdown2() {
   // }
   return (
     <div>
-      <Button className={classes.Btn} onClick={handleClick} >
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
       GIFTS      </Button>
       <Menu
         // id="simple-menu"

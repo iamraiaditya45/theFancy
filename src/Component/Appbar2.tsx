@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/Search";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -14,6 +13,10 @@ import Dropdown2 from './Dropdown2';
 import Dropdown1 from "./Dropdown1";
 import Lifestyles from "./LifeStyle";
 import Beauty from "./Beauty";
+import Women from "./Women";
+import Men from "./Men";
+import Kids from "./Kids";
+import Sale from "./Sale";
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
@@ -75,6 +78,8 @@ const useStyles = makeStyles({
   theFancy: {
     display: "flex",
     flexDirection: "row",
+    justifyContent:'center'
+  
   },
   searchIcon: {
     "&.css-i4bv87-MuiSvgIcon-root": {
@@ -86,7 +91,7 @@ const useStyles = makeStyles({
   personIcon: {
     "&.css-i4bv87-MuiSvgIcon-root": {
       fontSize: "32px",
-      marginLeft: "120px",
+      marginLeft: "30px",
       marginTop: "30px",
       marginRight: "30px",
     },
@@ -102,6 +107,18 @@ const useStyles = makeStyles({
   },
   lifestyles: {
     width: "110px",
+  },
+  women: {
+    width: "110px",
+  },
+  men: {
+    width: "70px",
+  },
+  kids: {
+    width: "110px",
+  },
+sale: {
+    width: "100px",
   },
 });
 
@@ -120,23 +137,15 @@ export default function ButtonAppBar() {
         </div>
         <div className={classes.listClass}>
           <List className={classes.flexContainer}>
-            <ListItem>
-              <ListItemText className={classes.whats}><Dropdown/></ListItemText>
-            </ListItem>
+            <ListItem className={classes.whats}><Dropdown/></ListItem>
             <ListItem className={classes.gift}><Dropdown2/></ListItem>
             <ListItem className={classes.home}><Dropdown1/></ListItem>
             <ListItem className={classes.lifestyles} ><Lifestyles/></ListItem>
-            <ListItem>
-              <ListItemText className={classes.beauty}>
-                <Beauty/>
-              </ListItemText>
-            </ListItem>
-            <ListItem>WOMEN</ListItem>
-            <ListItem>MEN</ListItem>
-            <ListItem>
-              <ListItemText className={classes.whats}>KIDS & BABY</ListItemText>
-            </ListItem>
-            <ListItem>SALE</ListItem>
+            <ListItem className={classes.beauty}><Beauty/></ListItem>
+            <ListItem className={classes.women} ><Women/></ListItem>  
+            <ListItem className={classes.men} ><Men/></ListItem>
+            <ListItem className={classes.beauty}><Kids/></ListItem>
+            <ListItem className={classes.sale} ><Sale/></ListItem>
           </List>
         </div>
       </Toolbar>
