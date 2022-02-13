@@ -49,7 +49,7 @@ export default function Sale() {
   const classes = useStyles();
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
         SALE
       </Button>
 <Menu
@@ -59,7 +59,6 @@ export default function Sale() {
          open={Boolean(anchorEl)}
          onClose={handleClose}
          className={classes.customWidth}
-         onMouseOut={handleClose}
        >
          <MenuItem onClick={handleClose}>Home Sale</MenuItem> 
          <MenuItem onClick={handleClose}>Lifestyle Sale</MenuItem>

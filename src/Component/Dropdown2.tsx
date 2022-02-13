@@ -83,7 +83,7 @@ export default function Dropdown2() {
   // }
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
       GIFTS      </Button>
       <Menu
         // id="simple-menu"
@@ -95,6 +95,7 @@ export default function Dropdown2() {
         style={{
           // width: '1950px'
         }}
+        onClose={handleClose}
       >
         <List onMouseLeave={handleClose} 
         className={classes.listDiv}>

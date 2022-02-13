@@ -53,7 +53,7 @@ export default function Kids() {
   const classes = useStyles();
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
         KIDS & BABY
       </Button>
 <Menu

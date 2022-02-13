@@ -46,7 +46,7 @@ const useStyles = makeStyles(() => ({
   },
   image:{
     height:'300px',
-    width:'150px',
+    width:'200px',
     margin:'5px'
 
   },
@@ -88,7 +88,7 @@ export default function Beauty() {
   // }
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
       Beauty & Wellness      </Button>
       <Menu
         // id="simple-menu"
@@ -100,6 +100,7 @@ export default function Beauty() {
         style={{
           // width: '1950px'
         }}
+        onClose={handleClose}
       >
         <List onMouseLeave={handleClose} 
         className={classes.listDiv}>

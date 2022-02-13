@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from '@mui/material';
  import { makeStyles } from "@mui/styles";
  import { Menu , MenuItem} from '@mui/material';
+import { color } from '@mui/system';
  const useStyles = makeStyles({
   Btn: {
-    backgroundColor: "white",
     color: "white",
     fontSize: 17,
     "&.css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
@@ -17,7 +17,7 @@ import { Button } from '@mui/material';
         background: 'white',
         color:"black",
         borderBottom:'3px solid gray',
-        borderRadius:'0px',
+        borderRadius:'0px', 
       },
     },
   },
@@ -27,29 +27,33 @@ import { Button } from '@mui/material';
     borderBottom:'3px solid gray !important',
     borderRadius:'0px !important',
   },
-  customWidth: {
-      '& div': {
-          width: '',  
-      }
-  }
+  test:{
+    display:"none", 
+    lineHeight:"2em",
+    color:"black",
+    width:"250px",
+    listStyle:"none",
+    listStyleType:"none",
+    background:"white",
+  },
+  // customWidth: {
+  //     '& div': {
+  //         width: '',  
+  //     }
+  // }
 });
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  var flag= false;
 
   // const handleClick =( event:any) => {
   //   setAnchorEl(event.currentTarget);
   // };
   function handleHover(event: any) {
-    if(!flag){
-      console.log("hadlehover");
-      setAnchorEl(event.currentTarget);
-      flag = true;
-    }
+    console.log("hadlehover");
+    setAnchorEl(event.currentTarget);
   }
-
-    function handleLeave() {
+function handleLeave() {
     console.log("handleLeave");
     setAnchorEl(null);
   }
@@ -61,24 +65,30 @@ export default function SimpleMenu() {
   const classes = useStyles();
   return (
     <div>
-      <Button  className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button  className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
         What's New
       </Button>
 <Menu
-         id="simple-menu"
+        //  id="simple-menu"
          anchorEl={anchorEl}
          keepMounted
          open={Boolean(anchorEl)}
          onClose={handleClose}
-         className={classes.customWidth}
+        //  className={classes.customWidth}
+        //  className={classes.customWidth}
        >
          <MenuItem onClick={handleClose}>Just In</MenuItem>
          <MenuItem onClick={handleClose}>Featured Collection</MenuItem>
          <MenuItem onClick={handleClose}>On out Raddar: Brands to note</MenuItem>
          <MenuItem onClick={handleClose}>Gift Guide Quiz</MenuItem>
        </Menu>
-      
-    </div>
+       {/* <ul className={classes.test}>
+         <li>Just In</li>
+         <li>Featured Collection</li>
+         <li>On our Raddar: Brands to Note</li>
+         <li>Gift Guide Quiz</li>
+       </ul> */}
+       </div>
     
   );
   }

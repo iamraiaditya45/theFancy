@@ -45,7 +45,9 @@ const useStyles = makeStyles({
   listClass: {
     //   marginTop:"10px",
     //   marginLeft:"170px",
-    alignItems: "center",
+    display:"flex",
+    flexDirection:"column",
+    width:"1300px",
   },
   tool: {
     display: "flex",
@@ -54,7 +56,7 @@ const useStyles = makeStyles({
   whats: {
     width: "110px",
     '&:hover': {
-      color: 'yellow',
+      color: 'black',
   },
     "&.css-10hburv-MuiTypography-root": {
       fontWeight: "bold",
@@ -63,14 +65,6 @@ const useStyles = makeStyles({
   },
   home: {
     width: "110px",
-  //   '&:hover': {
-  //     background: 'white',
-  //     color:"black",
-  // },
-  //   "&.css-10hburv-MuiTypography-root": {
-  //     fontWeight: "bold",
-      
-  //   },
   },
   beauty: {
     width: "175px",
@@ -119,7 +113,7 @@ const useStyles = makeStyles({
   },
 sale: {
     width: "100px",
-  },
+  },  
 });
 
 export default function ButtonAppBar() {

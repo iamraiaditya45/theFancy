@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     marginTop: "0px",
     '& div': {
       width: '100%',
-      // paddingLeft:"100px",
+      paddingLeft:"100px",
        marginRight:"-100px"
   }
   },
@@ -46,19 +46,23 @@ const useStyles = makeStyles(() => ({
   },
   image:{
     height:'300px',
-    width:'150px',
-    margin:'5px'
+    width:'130px',
+    margin:'5px',
 
   },
   price:{
     fontWeight:"bolder",
     marginBottom:"10px",
+    paddingLeft:"20px",
   },
   listDiv:{
       display:"flex",
       justifyContent:"space-between",
       "&.css-h4y409-MuiList-root":{
         padding:"40px",
+        },
+        "&..css-h4y409-MuiList-root ":{
+paddingLeft:"20px", 
         },
   }
 }));
@@ -88,7 +92,7 @@ export default function Lifestyles() {
   // }
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover} >
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
       LIFFESTYLE      </Button>
       <Menu
         // id="simple-menu"
@@ -100,6 +104,7 @@ export default function Lifestyles() {
         style={{
           // width: '1950px'
         }}
+        onClose={handleClose}
       >
         <List onMouseLeave={handleClose} 
         className={classes.listDiv}>

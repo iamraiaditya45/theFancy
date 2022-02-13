@@ -88,7 +88,7 @@ export default function Women() {
   // }
   return (
     <div>
-      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`} onMouseEnter={handleHover}>
+      <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
       Women      </Button>
       <Menu
         // id="simple-menu"
@@ -100,6 +100,7 @@ export default function Women() {
         style={{
           // width: '1950px'
         }}
+        onClose={handleClose}
       >
         <List onMouseLeave={handleClose} 
         className={classes.listDiv}>
