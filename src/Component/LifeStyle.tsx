@@ -34,35 +34,32 @@ const useStyles = makeStyles(() => ({
     marginTop: "0px",
     '& div': {
       width: '100%',
-      paddingLeft:"100px",
+      // paddingLeft:"10px",
        marginRight:"-100px"
   }
   },
   menuItem: {
-    width: 200,
+    width: 150,
     fontSize: 20,
     textAlign: "center",
     marginLeft: 20,
   },
   image:{
     height:'300px',
-    width:'130px',
+    width:'150px',
     margin:'5px',
 
   },
   price:{
     fontWeight:"bolder",
     marginBottom:"10px",
-    paddingLeft:"20px",
+    paddingLeft:"0px",
   },
   listDiv:{
       display:"flex",
       justifyContent:"space-between",
       "&.css-h4y409-MuiList-root":{
         padding:"40px",
-        },
-        "&..css-h4y409-MuiList-root ":{
-paddingLeft:"20px", 
         },
   }
 }));
