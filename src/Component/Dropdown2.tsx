@@ -77,6 +77,7 @@ export default function Dropdown2() {
   // function handleLeave() {
 
   //   console.log("handleLeave");
+    console.log("handleHover");
   
 
   //   setAnchorEl(null);
@@ -84,6 +85,7 @@ export default function Dropdown2() {
   return (
     <div>
       <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
+      <Button className={classes.Btn} onMouseEnter={handleHover} >
       GIFTS      </Button>
       <Menu
         // id="simple-menu"
