@@ -85,7 +85,6 @@ export default function Dropdown2() {
   return (
     <div>
       <Button className={`${classes.Btn} ${anchorEl ? classes.btnHoverStyle : ''}`}onClick={handleHover}>
-      <Button className={classes.Btn} onMouseEnter={handleHover} >
       GIFTS      </Button>
       <Menu
         // id="simple-menu"
