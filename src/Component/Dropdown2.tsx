@@ -71,13 +71,13 @@ export default function Dropdown2() {
     setAnchorEl(null);
   };
   function handleHover(event: any) {
-    console.log("handleHover");
+    // console.log("handleHover");
     setAnchorEl(event.currentTarget);
   }
   // function handleLeave() {
 
   //   console.log("handleLeave");
-    console.log("handleHover");
+    // console.log("handleHover");
   
 
   //   setAnchorEl(null);

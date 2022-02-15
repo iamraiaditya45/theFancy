@@ -69,7 +69,7 @@ const useStyles = makeStyles(() => ({
 border:'1px solid black',
   },
   itemContainer:{
-    display:"none"
+    // display:"none"
   },
   containerSelected:{
     display:"flex",

@@ -76,7 +76,7 @@ export default function Beauty() {
     setAnchorEl(null);
   };
   function handleHover(event: any) {
-    console.log("handleHover");
+    // console.log("handleHover");
     setAnchorEl(event.currentTarget);
   }
   // function handleLeave() {
