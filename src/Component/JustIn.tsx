@@ -64,6 +64,51 @@ const useStyles = makeStyles(() => ({
     width: "200px",
     height: "50px",
   },
+  container:{
+// display:"none",
+border:'1px solid black',
+  },
+  itemContainer:{
+    display:"none"
+  },
+  containerSelected:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+border:"1px solid black",
+height:"600px",
+width:"100%",
+  },
+containerSelectedUpper:{
+  display:"flex",
+  alignItems:"center",
+  textAlign:"center",
+height:"70px",
+width:"85%",
+border:"1px solid black",
+  },
+  containerSelectedLower:{
+    display:"flex",
+    height:"630px",
+    width:"85%",
+    border:"1px solid black",
+      },
+    containerSelectedLowerLeft:{
+height:"100%",
+width:"15%",
+border:"1px solid black",
+    },
+    containerSelectedLowerMiddle:{
+      height:"100%",
+width:"40%",
+border:"1px solid black",
+    },
+    containerSelectedLowerRight:{
+      height:"100%",
+width:"45%",
+border:"1px solid black",
+    }
 }));
 
 
@@ -88,6 +133,13 @@ export default function BeerCard() {
         if (resp.status === 200) {
           console.log("resp is", resp)
           setData(resp.data)
+          localStorage.setItem("id", resp.data.id);
+          localStorage.setItem("title", resp.data.title);
+          localStorage.setItem("price", resp.data.price);
+          localStorage.setItem("description", resp.data.description);
+          localStorage.setItem("category", resp.data.category);
+          localStorage.setItem("image", resp.data.image);
+          localStorage.setItem("rating", resp.data.rating);
         }
       })
       .catch((err) => {
@@ -96,7 +148,8 @@ export default function BeerCard() {
   }, [category])
 
   return (
-    <>  
+    <div className={classes.container} >
+      <div className={classes.itemContainer} >
       <div className={classes.top}>
         <FormControl>
           <InputLabel id="demo-simple-select-label">Filter</InputLabel>
@@ -156,7 +209,24 @@ export default function BeerCard() {
           );
         })}
       </div>
-    </>
+      </div>
+      <div className={classes.containerSelected} >
+        <div className={classes.containerSelectedUpper} >
+         <h5>{"item.category"}</h5>
+        </div>
+        <div className={classes.containerSelectedLower} >
+          <div className={classes.containerSelectedLowerLeft}>
+            <h1>test</h1>
+          </div>
+          <div className={classes.containerSelectedLowerMiddle}>
+            <h1>test</h1>
+          </div>
+          <div className={classes.containerSelectedLowerRight}>
+            <h1>test</h1>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
