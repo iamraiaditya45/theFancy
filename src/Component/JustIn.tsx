@@ -1,146 +1,162 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Image1 from '../Images/1.png';
 import Image2 from '../Images/image2.jpg';
 import Image3 from '../Images/image3.jpg';
-import { Typography } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import CommitIcon from '@mui/icons-material/Commit';
-import {  Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Drop from "./itemDropdown"
+import axios from 'axios';
 // const isFavourite = () => (true);
 const useStyles = makeStyles(() => ({
-  cardContainer:{
-display:"flex",
-justifyContent:"space-around",
-marginTop:"50px",
+  cardContainer: {
+    display: "flex",
+    flexWrap:"wrap",
+    marginTop: "50px",
+    width: "100%",
+    margin: "10px",
+    flexDirection: "row",
   },
   card: {
-    width: 500,
-    height:600,
+    width: 395,
+    height: 500,
+    margin: "10px",
   },
-  imgStyle:{
+  imgStyle: {
     display: 'block',
-    height: '600px',
+    height: '300px',
     marginRight: 'auto',
     marginLeft: 'auto',
-    marginTop: '-200px',
+    marginTop:"10px",
     position: 'relative',
-    width:"500px"
+    width: "200px"
   },
-  secondLine:{
-"&.css-1uwgr7b-MuiTypography-root":{
-  fontWeight:"bold",
-}
+  secondLine: {
+    "&.css-1uwgr7b-MuiTypography-root": {
+      fontWeight: "bold",
+    }
   },
-  btn:{
-    float:"left",
-    width:"120px",
-    "&.css-1rwt2y5-MuiButtonBase-root-MuiButton-root":{
-borderRadius:"20px",
-border:"1px solid black",
-color:"black",
-display:"flex",
-justifyContent:"space-between",
-width:"120px",
-height:"43px"
+  btn: {
+    float: "left",
+    width: "120px",
+    "&.css-1rwt2y5-MuiButtonBase-root-MuiButton-root": {
+      borderRadius: "20px",
+      border: "1px solid black",
+      color: "black",
+      display: "flex",
+      justifyContent: "space-between",
+      width: "120px",
+      height: "43px"
 
     },
   },
-  top:{
-    display:"flex",
-    justifyContent:"space-around",
-    marginTop:"20px",
+  top: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginTop: "20px",
     // marginLeft:"30px"
-  }
+  },
+  filter: {
+    width: "200px",
+    height: "50px",
+  },
 }));
 
 
-function BeerCard() {
-    const classes = useStyles();
-    const [over, setOver] = React.useState(false);
+export default function BeerCard() {
+  const [data, setData] = useState([]);
+  const [category, setCategory] = useState("");
+  const handleChange = (event: any) => {
+    setCategory(event.target.value);
+  };
+
+  const classes = useStyles();
+  const [over, setOver] = React.useState(false);
+
+  useEffect(() => {
+    let apiUrl ="https://fakestoreapi.com/products";
+    if(category.length > 0 && category !== 'all'){
+      apiUrl = `${apiUrl}/category/${category}`;
+    }
+  
+    axios.get(apiUrl)
+      .then((resp) => {
+        if (resp.status === 200) {
+          console.log("resp is", resp)
+          setData(resp.data)
+        }
+      })
+      .catch((err) => {
+        console.log("err is", err)
+      })
+  }, [category])
+
   return (
-    <>
-    <div className={classes.top}>
-            <Button variant="outlined" className={classes.btn}>
-          <CommitIcon />
-          <Typography  align="center"  component="h2">
-            FILTER
-          </Typography>
-        </Button>
-        <Typography  align="center"  variant="h6">
-            52 PRODUCTS
-          </Typography>
-          <Drop/>
-          </div>
-    <div className={classes.cardContainer}>
-
-      <Card className={classes.card}>
-      <div
-      onMouseOver={() => setOver(true)}
-      onMouseOut={() => setOver(false)}
-    >
-         <img
-          src={over ? Image1 : Image2}
-          alt="arrow"
-          className={classes.imgStyle}
-        />
-    </div>   
-
-    {/* <img className={classes.imgStyle} src={Image1} /> */}
-
+    <>  
+      <div className={classes.top}>
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            className={classes.filter}
+            value={category}
+            label="Filter"
+            onChange={handleChange}
+          >
+            <MenuItem value={"all"}>All</MenuItem>
+            <MenuItem value={"jewelery"}>Jewelery</MenuItem>
+            <MenuItem value={"men's clothing"}>Men's Clothing</MenuItem>
+            <MenuItem value={"women's clothing"}>Women's Clothing</MenuItem>
+            <MenuItem value={"electronics"}>Electrionics</MenuItem>
+          </Select>
+        </FormControl>
+        <Typography align="center" variant="h6">
+          52 PRODUCTS
+        </Typography>
+        <Drop />
+      </div>
+      <div className={classes.cardContainer}>
+        {data.map((item: any) => {
+          return (
+            <div key={item.id}>
+              <Card className={classes.card}>
+                <div
+                  onMouseOver={() => setOver(true)}
+                  onMouseOut={() => setOver(false)}
+                >
+                  {/* <img
+    src={over ? Image1 : Image2}
+    alt="arrow"
+    className={classes.imgStyle}
+  /> */}
+                </div>
+                <img className={classes.imgStyle} src={item.image} />
                 <CardContent>
-          <Typography gutterBottom align="center"  component="h2">
-            MISSETE
-          </Typography>
-          <Typography component="p" className={classes.secondLine} align="center">
-            Napkins in Natural-Hand Marbled Fringe
-          </Typography>
-          <Typography gutterBottom align="center"  component="h2">
-            $30
-          </Typography>
-        </CardContent>
-        <CardActions>
-        </CardActions>
-      </Card>
-      <Card className={classes.card}>
-    <img className={classes.imgStyle} src={Image2}  />
-    
-                <CardContent>
-          <Typography gutterBottom align="center"  component="h2">
-            MISSETE
-          </Typography>
-          <Typography component="p" className={classes.secondLine} align="center">
-            Napkins in Natural-Hand Marbled Fringe
-          </Typography>
-          <Typography gutterBottom align="center"  component="h2">
-            $30
-          </Typography>
-        </CardContent>
-        <CardActions>
-        </CardActions>
-      </Card>
-      <Card className={classes.card}>
-    <img className={classes.imgStyle} src={Image1} />
-                <CardContent>
-          <Typography gutterBottom align="center"  component="h2">
-            MISSETE
-          </Typography>
-          <Typography component="p" className={classes.secondLine} align="center">
-            Napkins in Natural-Hand Marbled Fringe
-          </Typography>
-          <Typography gutterBottom align="center"  component="h2">
-            $30
-          </Typography>
-        </CardContent>
-        <CardActions>
-        </CardActions>
-      </Card>
-     
-    </div>
+                  <Typography gutterBottom align="center" component="h2">
+                    {item.id}
+                  </Typography>
+                  <Typography component="p" className={classes.secondLine} align="center">
+                    {item.title}
+                  </Typography>
+                  <Typography gutterBottom align="center" component="h2">
+                    {item.price}
+                  </Typography>
+                  <Typography gutterBottom align="center" component="h2">
+                    {item.category}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                </CardActions>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
-export default BeerCard;
+

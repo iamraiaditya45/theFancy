@@ -52,10 +52,10 @@ export default function SimpleMenu() {
     console.log("hadlehover");
     setAnchorEl(event.currentTarget);
   }
-function handleLeave() {
-    console.log("handleLeave");
-    setAnchorEl(null);
-  }
+// function handleLeave() {
+//     console.log("handleLeave");
+//     setAnchorEl(null);
+//   }
 
   const handleClose = () => {
     console.log("handleclose")

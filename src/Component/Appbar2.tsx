@@ -17,10 +17,9 @@ import Women from "./Women";
 import Men from "./Men";
 import Kids from "./Kids";
 import Sale from "./Sale";
-import Drawers from './DrawerContainer';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton , Divider} from "@mui/material";
+import {Divider} from "@mui/material";
 import CartItem from './cartItem'
 const useStyles = makeStyles({
   mainContainers: {
