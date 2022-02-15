@@ -19,6 +19,7 @@ import CartItem from './cartItem'
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
+    boxShadow: "0px 0px 0px 0px",
     "&.css-hip9hq-MuiPaper-root-MuiAppBar-root": {
       marginTop: "0px",
       backgroundColor: "black",
@@ -57,7 +58,6 @@ const useStyles = makeStyles({
   },
     "&.css-10hburv-MuiTypography-root": {
       fontWeight: "bold",
-      
     },
   },
   beauty: {
@@ -139,7 +139,7 @@ export default function ButtonAppBar() {
     console.log("hjjj",openDrawer)
   }
   return (
-    <AppBar position="static" className={classes.mainContainers}>
+    <AppBar position="static" className={classes.mainContainers} >
       <Toolbar className={classes.tool}>
         <div className={classes.theFancy}>
           <SearchIcon className={classes.searchIcon} />
@@ -166,10 +166,12 @@ export default function ButtonAppBar() {
         <div className={classes.listClass}>
           <List className={classes.flexContainer}>
             <ListItem>
-              <ListItemText className={classes.whats}><Dropdown/></ListItemText>
+              {/* <ListItemText className={classes.whats}><Dropdown/></ListItemText> */}
+              <ListItemText className={classes.whats}>WHAT NEW</ListItemText>
             </ListItem>
-            <ListItem className={classes.gift}><Dropdown2/></ListItem>
-            <ListItem><Dropdown2/></ListItem>
+            {/* <ListItem className={classes.gift}><Dropdown2/></ListItem> */}
+            <ListItem className={classes.gift}>GIFT</ListItem>
+            {/* <ListItem><Dropdown2/></ListItem> */}
             <ListItem>LIFESTYLE</ListItem>
             <ListItem>
               <ListItemText className={classes.beauty}>

@@ -2,8 +2,6 @@ import React from "react";
 import Navbar from "./Appbar2";
 import { makeStyles } from "@mui/styles";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-// import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
-// import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -15,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
     boxShadow: "0 0 4px grey",
     padding: 20,
-     },
+  },
   subCard: {
     backgroundColor: "white",
     height: 140,
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     height: "80%",
     width: "15%",
     padding: 15,
-    paddingTop:15,
+    paddingTop: 15,
   },
   weight: {
     color: "grey",
@@ -50,13 +48,11 @@ const useStyles = makeStyles((theme) => ({
   quantity: {
     marginTop: 60,
     display: "flex",
-    
   },
   price: {
     marginTop: 5,
     paddingLeft: 20,
     paddingRight: 20,
-   
   },
   addIcon: {
     height: 20,
@@ -67,59 +63,41 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 3,
     marginRight: 5,
     marginLeft: 5,
-   
   },
-  total:{
-    float:"right",
-    marginTop:30,
-    fontSize:30,
-    fontWeight:"bold"
+  total: {
+    float: "right",
+    marginTop: 30,
+    fontSize: 30,
+    fontWeight: "bold",
   },
-  top:{
-    display:"flex",
-    justifyContent:"space-between",
-  }
+  top: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
 }));
 const Cart = () => {
   const classes = useStyles();
-//   const totalPrice = cartItems.reduce(
-//     (price, item) => price + item.quantity * item.price,
-//     0
-//   );
+
   return (
     <>
-      {/* <Navbar /> */}
       <div className={classes.card}>
         <div className={classes.top}>
-        <div className={classes.total}>
-        Total Cart Value
-        <div >$xyz</div>
-      </div>
-      </div>
-            <div >
-              <div className={classes.subCard}>
-                {/* <CancelOutlinedIcon className={classes.cancelBtn} /> */}
-                {/* <img className={classes.imgCart} alt="fruit" src={item.image} /> */}
-                <div className={classes.cartItem}>
-                  {/* <p className={classes.item}>{item.quantity} Kg of {item.name}</p> */}
-                  {/* <p3 className={classes.weight}>{item.quantity}kg</p3> */}
-                </div>
-                <div className={classes.quantity}>
-                  <div className={classes.addIcon}>
-                    {/* <AddOutlinedIcon onClick={() => handleAddProduct(item)} /> */}
-                  </div>
-                  {/* <p className={classes.price}>${item.price}*{item.quantity}</p> */}
-                  <div className={classes.addIcon}>
-                    <AddOutlinedIcon
-                    //   onClick={() => handleRemoveProduct(item)}
-                    />
-                  </div>
-                </div>
+          <div className={classes.total}>
+            Total Cart Value
+            <div>$xyz</div>
+          </div>
+        </div>
+        <div>
+          <div className={classes.subCard}>
+            <div className={classes.cartItem}></div>
+            <div className={classes.quantity}>
+              <div className={classes.addIcon}></div>
+              <div className={classes.addIcon}>
+                <AddOutlinedIcon />
               </div>
             </div>
-         
-        
-
+          </div>
+        </div>
       </div>
     </>
   );

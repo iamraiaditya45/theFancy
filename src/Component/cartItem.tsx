@@ -10,10 +10,12 @@ const CartItem = () => {
   const useStyles = makeStyles(() => ({
     beer: {
       "&.css-ahj2mt-MuiTypography-root": {
-        color: "black",
-        fontSize: "20px",
-        fontWeight: "300",
-        textAlign: "center",
+        width:"360px",
+        textAlign:"center",
+        marginLeft:"55px",
+        fontWeight:"550",
+        marginTop:"20px",
+        fontSize:"19px",
       },
     },
     image: {
@@ -45,8 +47,7 @@ const CartItem = () => {
       },
     },
     checkoutButton: {
-      "&.css-sghohy-MuiButtonBase-root-MuiButton-root": {
-        padding: "0.7rem 3rem",
+      padding: "0.7rem 3rem",
         fontSize: "13px",
         textTransform: "uppercase",
         outline: "none",
@@ -59,7 +60,7 @@ const CartItem = () => {
         borderRadius: "50px",
         marginLeft: "30px",
         marginTop: "20px",
-      },
+        border:"none",
     },
     subTotal: {
       display: "flex",
@@ -106,9 +107,12 @@ const CartItem = () => {
         <Typography className={classes.shippingTaxes}>
           Shipping, taxes, and discount codes calculated at checkout.
         </Typography>
-        <Button variant="contained" className={classes.checkoutButton}>
+        {/* <button className={classes.pre} onClick={() => setCounter(counter-1)}>
+          Previous
+        </button> */}
+        <button  className={classes.checkoutButton}>
           Checkout
-        </Button>
+        </button>
       </div>
     </>
   );

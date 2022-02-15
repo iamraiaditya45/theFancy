@@ -1,22 +1,72 @@
-import * as React from 'react';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
-import Stack from '@mui/material/Stack';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import classes from "*.module.css";
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@mui/styles";
 
-export default function CustomIcons() {
+const useStyles = makeStyles(() => ({
+pre:{
+        fontSize: "13px",
+        textTransform: "uppercase",
+        outline: "none",
+        cursor: "pointer",
+        backgroundColor: "black",
+        color: "white",
+        // alignItems: "center",
+        height: "42px",
+        width: "92px",
+        borderRadius: "50px",
+        marginRight: "5px",
+         marginTop: "-200px",
+        border:"none",
+        marginLeft:"830px"
+},
+next:{
+  
+  fontSize: "13px",
+  textTransform: "uppercase",
+  outline: "none",
+  cursor: "pointer",
+  backgroundColor: "black",
+  color: "white",
+  alignItems: "center",
+  height: "42px",
+  width: "92px",
+  borderRadius: "50px",
+  marginLeft: "5px",
+   marginTop: "-200px",
+  border:"none"
+}
+}));
+
+function Pagination({ showPerPage, onPaginationChange}:any) {
+  const [counter, setCounter] = useState(1);
+  const onButtonClick = (type:any) => {
+    if (type === "prev") {
+      if (counter === 1) {
+        setCounter(1);
+      } else {
+        setCounter(counter - 1);
+      }
+    } 
+  };
+  useEffect(() => {
+    const value = showPerPage * counter;
+
+    onPaginationChange(value - showPerPage, value);
+  }, [counter]);
+
+  const classes = useStyles();
   return (
-    <Stack spacing={10}>
-      <Pagination
-        count={3}
-        renderItem={(item) => (
-          <PaginationItem
-            components={{ previous: ArrowBackIcon }}
-            {...item}
-          />
-        )}
-      />
-    </Stack>
+    <>
+      <div className="btns">
+        <button className={classes.pre} onClick={() => setCounter(counter-1)}>
+          Previous
+        </button>
+        <button className={classes.next}  onClick={() => setCounter(counter+1)}>
+          Next
+        </button>
+      </div>
+    </>
   );
 }
+
+export default Pagination;

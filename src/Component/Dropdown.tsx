@@ -64,7 +64,6 @@ import React from "react";
 import { Button } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 import { Menu , MenuItem} from '@mui/material';
-import Data from "../data.json";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
 

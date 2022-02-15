@@ -8,6 +8,8 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   mainContainer: {
     height: "40px",
+          boxShadow: "0px 0px 0px 0px",
+
     "&.css-hip9hq-MuiPaper-root-MuiAppBar-root": {
       backgroundColor: "#3E3B39",
       boxShadow: "0px 0px 0px 0px",
