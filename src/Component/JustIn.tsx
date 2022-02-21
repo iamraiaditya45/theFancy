@@ -11,6 +11,8 @@ import CommitIcon from '@mui/icons-material/Commit';
 import { Button } from "@mui/material";
 import Drop from "./itemDropdown"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import RouteNames from '../router/routerNames';
 // const isFavourite = () => (true);
 const useStyles = makeStyles(() => ({
   cardContainer: {
@@ -121,6 +123,7 @@ export default function BeerCard() {
 
   const classes = useStyles();
   const [over, setOver] = React.useState(false);
+  const naviagte = useNavigate();
 
   useEffect(() => {
     let apiUrl ="https://fakestoreapi.com/products";
@@ -131,15 +134,8 @@ export default function BeerCard() {
     axios.get(apiUrl)
       .then((resp) => {
         if (resp.status === 200) {
-          console.log("resp is", resp)
+          // console.log("resp is", resp)
           setData(resp.data)
-          localStorage.setItem("id", resp.data.id);
-          localStorage.setItem("title", resp.data.title);
-          localStorage.setItem("price", resp.data.price);
-          localStorage.setItem("description", resp.data.description);
-          localStorage.setItem("category", resp.data.category);
-          localStorage.setItem("image", resp.data.image);
-          localStorage.setItem("rating", resp.data.rating);
         }
       })
       .catch((err) => {
@@ -175,7 +171,7 @@ export default function BeerCard() {
       <div className={classes.cardContainer}>
         {data.map((item: any) => {
           return (
-            <div key={item.id}>
+            <div key={item.id} onClick={()=>{naviagte(`${RouteNames.SELECTED_ITEMS}/${item.id}`)}} >
               <Card className={classes.card}>
                 <div
                   onMouseOver={() => setOver(true)}
@@ -210,22 +206,7 @@ export default function BeerCard() {
         })}
       </div>
       </div>
-      <div className={classes.containerSelected} >
-        <div className={classes.containerSelectedUpper} >
-         <h5>{"item.category"}</h5>
-        </div>
-        <div className={classes.containerSelectedLower} >
-          <div className={classes.containerSelectedLowerLeft}>
-            <h1>test</h1>
-          </div>
-          <div className={classes.containerSelectedLowerMiddle}>
-            <h1>test</h1>
-          </div>
-          <div className={classes.containerSelectedLowerRight}>
-            <h1>test</h1>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }

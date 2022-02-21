@@ -6,7 +6,8 @@ import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import CloseIcon from '@mui/icons-material/Close';
-import CartItem from "./cartItem";
+import CartItem from "./cart/cartItem";
+
 const DrawerComponent = () => {
   const useStyles = makeStyles(() => ({
     appbar: {

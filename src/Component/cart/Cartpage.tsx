@@ -1,9 +1,6 @@
 import React from "react";
-import Navbar from "./Appbar2";
 import { makeStyles } from "@mui/styles";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-// import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
-// import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -88,7 +85,6 @@ const Cart = () => {
 //   );
   return (
     <>
-      {/* <Navbar /> */}
       <div className={classes.card}>
         <div className={classes.top}>
         <div className={classes.total}>

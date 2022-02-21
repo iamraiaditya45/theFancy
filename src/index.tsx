@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ButtonAppBar from './Component/Appbar1';
+import ButtonAppBar2 from './Component/Appbar2';
+import LabelBottomNavigation from './Component/Footer';
 
 ReactDOM.render(
   <React.StrictMode>
+    <ButtonAppBar/>
+    <ButtonAppBar2/>
     <App />
+    <LabelBottomNavigation/>
   </React.StrictMode>,
   document.getElementById('root')
 );
