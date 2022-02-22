@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import CartItem from "./cartItem";
 const DrawerComponent = () => {
   const useStyles = makeStyles(() => ({
@@ -29,34 +29,34 @@ const DrawerComponent = () => {
           padding: "0px",
         },
     },
-    divider:{
-        '&.css-9mgopn-MuiDivider-root': {
-    width:"410px",
-    marginTop:"10px",
-    marginBottom:"10px",
-    marginLeft:"20px",
-    color:"black",
-    height:"10px"
-},
+    divider: {
+      "&.css-9mgopn-MuiDivider-root": {
+        width: "410px",
+        marginTop: "10px",
+        marginBottom: "10px",
+        marginLeft: "20px",
+        color: "black",
+        height: "10px",
+      },
     },
-top:{
-display:"flex",
-justifyContent:"space-between",
-marginLeft:"20px",
-marginRight:"20px"
+    top: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginLeft: "20px",
+      marginRight: "20px",
     },
-    cart:{
-        "&.css-ahj2mt-MuiTypography-root":{
-fontSize:"26px",
-fontFamily:" sans-serif",
-fontWeight:"bold",
-        },
-    }
+    cart: {
+      "&.css-ahj2mt-MuiTypography-root": {
+        fontSize: "26px",
+        fontFamily: " sans-serif",
+        fontWeight: "bold",
+      },
+    },
   }));
 
   const [openDrawer, setOpenDrawer] = useState(false);
   const onClose = (event: any) => {
-    setOpenDrawer(false)
+    setOpenDrawer(false);
   };
   const classes = useStyles();
   return (
@@ -66,15 +66,14 @@ fontWeight:"bold",
         classes={{ paper: classes.drawerPaper }}
         onClose={() => setOpenDrawer(false)}
         open={openDrawer}
-        //onOpen={() => setOpenDrawer(true)}>
       >
         <Toolbar />
-<div className={classes.top}>
-        <Typography className={classes.cart}>Cart</Typography>
-        <CloseIcon onClick={onClose}/>
+        <div className={classes.top}>
+          <Typography className={classes.cart}>Cart</Typography>
+          <CloseIcon onClick={onClose} />
         </div>
-        <Divider className={classes.divider}/>
-        <CartItem/>
+        <Divider className={classes.divider} />
+        <CartItem />
       </Drawer>
       <Toolbar>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>

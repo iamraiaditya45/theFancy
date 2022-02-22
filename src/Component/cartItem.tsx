@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { IconButton, Drawer, Divider, Button } from "@mui/material";
+import React from "react";
+import {  Divider } from "@mui/material";
 
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -10,12 +10,12 @@ const CartItem = () => {
   const useStyles = makeStyles(() => ({
     beer: {
       "&.css-ahj2mt-MuiTypography-root": {
-        width:"360px",
-        textAlign:"center",
-        marginLeft:"55px",
-        fontWeight:"550",
-        marginTop:"20px",
-        fontSize:"19px",
+        width: "360px",
+        textAlign: "center",
+        marginLeft: "55px",
+        fontWeight: "550",
+        marginTop: "20px",
+        fontSize: "19px",
       },
     },
     image: {
@@ -48,19 +48,19 @@ const CartItem = () => {
     },
     checkoutButton: {
       padding: "0.7rem 3rem",
-        fontSize: "13px",
-        textTransform: "uppercase",
-        outline: "none",
-        cursor: "pointer",
-        backgroundColor: "black",
-        color: "white",
-        alignItems: "center",
-        height: "42px",
-        width: "392px",
-        borderRadius: "50px",
-        marginLeft: "30px",
-        marginTop: "20px",
-        border:"none",
+      fontSize: "13px",
+      textTransform: "uppercase",
+      outline: "none",
+      cursor: "pointer",
+      backgroundColor: "black",
+      color: "white",
+      alignItems: "center",
+      height: "42px",
+      width: "392px",
+      borderRadius: "50px",
+      marginLeft: "30px",
+      marginTop: "20px",
+      border: "none",
     },
     subTotal: {
       display: "flex",
@@ -68,19 +68,19 @@ const CartItem = () => {
       marginLeft: "20px",
       marginRight: "20px",
     },
-    shippingTaxes:{
-        "&.css-ahj2mt-MuiTypography-root":{
-        width:"360px",
-        textAlign:"center",
-        marginLeft:"45px",
-        fontWeight:"550",
-        marginTop:"20px",
-        fontSize:"14px",
+    shippingTaxes: {
+      "&.css-ahj2mt-MuiTypography-root": {
+        width: "360px",
+        textAlign: "center",
+        marginLeft: "45px",
+        fontWeight: "550",
+        marginTop: "20px",
+        fontSize: "14px",
+      },
+      totalText: {
+        color: "red",
+      },
     },
-    totalText:{
-        color:"red"
-    }
-}
   }));
 
   const classes = useStyles();
@@ -101,18 +101,13 @@ const CartItem = () => {
       <div>
         <Divider className={classes.divider} />
         <div className={classes.subTotal}>
-          <Typography >SUBTOTAL</Typography>
+          <Typography>SUBTOTAL</Typography>
           <Typography>$360</Typography>
         </div>
         <Typography className={classes.shippingTaxes}>
           Shipping, taxes, and discount codes calculated at checkout.
         </Typography>
-        {/* <button className={classes.pre} onClick={() => setCounter(counter-1)}>
-          Previous
-        </button> */}
-        <button  className={classes.checkoutButton}>
-          Checkout
-        </button>
+        <button className={classes.checkoutButton}>Checkout</button>
       </div>
     </>
   );

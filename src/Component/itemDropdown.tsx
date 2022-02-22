@@ -1,13 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
 import MultiSelectUnstyled, {
   MultiSelectUnstyledProps,
-} from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { styled } from '@mui/system';
+} from "@mui/base/MultiSelectUnstyled";
+import { selectUnstyledClasses } from "@mui/base/SelectUnstyled";
+import OptionUnstyled, {
+  optionUnstyledClasses,
+} from "@mui/base/OptionUnstyled";
+import PopperUnstyled from "@mui/base/PopperUnstyled";
+import { styled } from "@mui/system";
 
-const StyledButton = styled('button')`
+const StyledButton = styled("button")`
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -30,17 +32,17 @@ const StyledButton = styled('button')`
     // border-radius: 0.75em 0.75em 0 0;
 
     &::after {
-      content: '▴';
+      content: "▴";
     }
   }
 
   &::after {
-    content: '▾';
+    content: "▾";
     float: right;
   }
 `;
 
-const StyledListbox = styled('ul')`
+const StyledListbox = styled("ul")`
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -93,9 +95,9 @@ const StyledPopper = styled(PopperUnstyled)`
 
 const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
   props: MultiSelectUnstyledProps<number>,
-  ref: React.ForwardedRef<any>,
+  ref: React.ForwardedRef<any>
 ) {
-  const components: MultiSelectUnstyledProps<number>['components'] = {
+  const components: MultiSelectUnstyledProps<number>["components"] = {
     Root: StyledButton,
     Listbox: StyledListbox,
     Popper: StyledPopper,

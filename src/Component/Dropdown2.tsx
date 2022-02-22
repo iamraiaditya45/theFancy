@@ -20,11 +20,11 @@ const useStyles = makeStyles(() => ({
   },
   menuAreas: {
     marginTop: "0px",
-    '& div': {
-      width: '100%',
+    "& div": {
+      width: "100%",
       // paddingLeft:"100px",
-       marginRight:"-100px"
-  }
+      marginRight: "-100px",
+    },
   },
   menuItem: {
     width: 200,
@@ -33,17 +33,17 @@ const useStyles = makeStyles(() => ({
     marginLeft: 20,
   },
 
-  price:{
-    fontWeight:"bolder",
-    marginBottom:"10px",
+  price: {
+    fontWeight: "bolder",
+    marginBottom: "10px",
   },
-  listDiv:{
-      display:"flex",
-      justifyContent:"space-between",
-      "&.css-h4y409-MuiList-root":{
-        padding:"40px",
-        },
-  }
+  listDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    "&.css-h4y409-MuiList-root": {
+      padding: "40px",
+    },
+  },
 }));
 export default function SimpleMenu() {
   const classes = useStyles();
@@ -63,16 +63,15 @@ export default function SimpleMenu() {
     setAnchorEl(event.currentTarget);
   }
   function handleLeave() {
-
     console.log("handleHover");
-  
 
     setAnchorEl(null);
   }
   return (
     <div>
-      <Button className={classes.Btn} onMouseEnter={handleHover} >
-      GIFTS      </Button>
+      <Button className={classes.Btn} onMouseEnter={handleHover}>
+        GIFTS{" "}
+      </Button>
       <Menu
         // id="simple-menu"
         anchorEl={anchorEl}
@@ -80,39 +79,40 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         //  onMouseOut={handleClose}
         className={classes.menuAreas}
-        style={{
-          // width: '1950px'
-        }}
+        style={
+          {
+            // width: '1950px'
+          }
+        }
       >
-        <List onMouseLeave={handleClose} 
-        className={classes.listDiv}>
-            <div>
-          <ListItem className={classes.price}>Price</ListItem>
-          <ListItem> Under $30</ListItem>
-          <ListItem>Under $50</ListItem>
-          <ListItem>Under $80</ListItem>
-          <ListItem>Splurge Worthy</ListItem>
-          </div>
-<div>
-          <ListItem className={classes.price}>Recipent</ListItem>
-          <ListItem> For Him</ListItem>
-          <ListItem>For Her</ListItem>
-          <ListItem>For Kid</ListItem>
-          <ListItem>For Both</ListItem>
+        <List onMouseLeave={handleClose} className={classes.listDiv}>
+          <div>
+            <ListItem className={classes.price}>Price</ListItem>
+            <ListItem> Under $30</ListItem>
+            <ListItem>Under $50</ListItem>
+            <ListItem>Under $80</ListItem>
+            <ListItem>Splurge Worthy</ListItem>
           </div>
           <div>
-          <ListItem className={classes.price}>Gift Guide</ListItem>
-          <ListItem> For Proud Parents</ListItem>
-          <ListItem>For the Gournamend</ListItem>
-          <ListItem>For the Gournamend</ListItem>
-          <ListItem>For Both</ListItem>
+            <ListItem className={classes.price}>Recipent</ListItem>
+            <ListItem> For Him</ListItem>
+            <ListItem>For Her</ListItem>
+            <ListItem>For Kid</ListItem>
+            <ListItem>For Both</ListItem>
           </div>
           <div>
-          <ListItem className={classes.price}>Recipent</ListItem>
-          <ListItem> For Him</ListItem>
-          <ListItem>For Her</ListItem>
-          <ListItem>For Kid</ListItem>
-          <ListItem>For Both</ListItem>
+            <ListItem className={classes.price}>Gift Guide</ListItem>
+            <ListItem> For Proud Parents</ListItem>
+            <ListItem>For the Gournamend</ListItem>
+            <ListItem>For the Gournamend</ListItem>
+            <ListItem>For Both</ListItem>
+          </div>
+          <div>
+            <ListItem className={classes.price}>Recipent</ListItem>
+            <ListItem> For Him</ListItem>
+            <ListItem>For Her</ListItem>
+            <ListItem>For Kid</ListItem>
+            <ListItem>For Both</ListItem>
           </div>
         </List>
       </Menu>
