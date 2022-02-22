@@ -1,26 +1,30 @@
-import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import './App.css';
-import Appbar from './Component/Appbar1';
-import Appbar2 from './Component/Appbar2';
-import Drawer from './Component/Footer';
-import Justin from './Component/JustIn';
-import Page from './Component/pagination1';
 import { store, persistor } from './redux/store';
 import Router from './router';
+import { initializeApp } from "firebase/app";
+import LabelBottomNavigation from './Component/Footer';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBgl1l1RnUL2nCobTjPd_LNWq_UDXdKuPI",
+  authDomain: "thefancy-3e4f8.firebaseapp.com",
+  projectId: "thefancy-3e4f8",
+  storageBucket: "thefancy-3e4f8.appspot.com",
+  messagingSenderId: "371360495033",
+  appId: "1:371360495033:web:f9f74598c7765a044c7268"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 function App() {
   return (
     <div className="App">
-      {/* <Appbar/>
-     <Appbar2/>
-     <Justin/>
-     <Drawer/>
-<Page/> */}
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Router />
+          <LabelBottomNavigation />
         </PersistGate>
       </Provider>
     </div>

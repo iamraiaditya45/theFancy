@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Divider, Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Counter from "../counter";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   beer: {
@@ -37,7 +38,14 @@ const useStyles = makeStyles(() => ({
     height: "150px",
     display: "flex",
     flexDirection: "column",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    position: "sticky",
+  },
+  itemscont: {
+    height: "800px",
+    overflow: "hidden",
+    overflowY: "scroll"
+
   },
   divider: {
     "&.css-9mgopn-MuiDivider-root": {
@@ -67,7 +75,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   cartfooter: {
-    position: "absolute",
+    position: "fixed",
     bottom: "10px",
   },
   subTotal: {
@@ -111,26 +119,41 @@ const CartItem = () => {
     dispatch({ type: "UpdateCart", payload: { cartItems: [...oldData] } })
   }
 
+  const dataToSend = () => {
+
+    console.log("button clicked and function called")
+    axios.post("https://thefancy-3e4f8-default-rtdb.firebaseio.com/usercartdata.json", cartItems)
+      .then((resp) => {
+        if (resp.status === 200) {
+          console.log("Data Saved Successfully")
+        }
+      })
+      .catch((err) => {
+        console.log("Data Error")
+      })
+  }
 
   return (
     <>
-      {cartItems.map((item: any, index: number) => {
-        return (
-          <div key={item.id} className={classes.uppercont} >
-            <Typography className={classes.beer}>{item.title}</Typography>
-            <br />
-            <div className={classes.item}>
-              <img className={classes.image} src={item.image} />
-              <div  >
-                <Counter value={item.quantity} onChangeValue={(val: any) => updateQuantity(val, index)} />
-              </div>
-              <div>
-                <Typography>{`${"$"}${(item.quantity * item.price).toFixed(2)}`}</Typography>
+      <div className={classes.itemscont}>
+        {cartItems.map((item: any, index: number) => {
+          return (
+            <div key={item.id} className={classes.uppercont} >
+              <Typography className={classes.beer}>{item.title}</Typography>
+              <br />
+              <div className={classes.item}>
+                <img className={classes.image} src={item.image} />
+                <div  >
+                  <Counter value={item.quantity} onChangeValue={(val: any) => updateQuantity(val, index)} />
+                </div>
+                <div>
+                  <Typography>{`${"$"}${(item.quantity * item.price).toFixed(2)}`}</Typography>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
       <div className={classes.cartfooter}>
         <Divider className={classes.divider} />
         <div className={classes.subTotal}>
@@ -140,6 +163,7 @@ const CartItem = () => {
         <Typography className={classes.shippingTaxes}>
           Shipping, taxes, and discount codes calculated at checkout.
         </Typography>
+        <Button variant="contained" className={classes.checkoutButton} onClick={dataToSend} >Send data to Firebase</Button>
         <Button variant="contained" className={classes.checkoutButton}>
           Checkout
         </Button>

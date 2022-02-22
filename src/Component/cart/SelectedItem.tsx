@@ -9,6 +9,9 @@ import Counter from '../counter';
 import { Divider, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
+import ButtonAppBar from '../Appbar1';
+import ButtonAppBar1 from '../Appbar2';
+import LabelBottomNavigation from '../Footer';
 
 const useStyles = makeStyles(() => ({
     cardContainer: {
@@ -73,8 +76,6 @@ const useStyles = makeStyles(() => ({
         height: "50px",
     },
     container: {
-        // display:"none",
-        border: '1px solid black',
     },
     itemContainer: {
         // display:"none"
@@ -278,57 +279,62 @@ export default function SelectedItem() {
     }
 
     return (
-        <div className={classes.containerSelected} >
-            <div className={classes.containerSelectedUpper} >
-                <h5>{`${data.category}${" >"}${data.title}`}</h5>
-            </div>
-            <div className={classes.containerSelectedLower} >
-                <div className={classes.containerSelectedLowerLeft}>
-                    <img className={classes.smallimage} src={data.image}></img>
-                    <img className={classes.smallimage} src={data.image}></img>
-                    <img className={classes.smallimage} src={data.image}></img>
+        <div>
+            <ButtonAppBar />
+            <ButtonAppBar1 />
+            <div className={classes.containerSelected} >
+                <div className={classes.containerSelectedUpper} >
+                    <h5>{`${data.category}${" >"}${data.title}`}</h5>
                 </div>
-                <div className={classes.containerSelectedLowerMiddle}>
-                    <div className={classes.likebtncont} >
-                        <img className={classes.likebtn} src="../heart.png" ></img>
+                <div className={classes.containerSelectedLower} >
+                    <div className={classes.containerSelectedLowerLeft}>
+                        <img className={classes.smallimage} src={data.image}></img>
+                        <img className={classes.smallimage} src={data.image}></img>
+                        <img className={classes.smallimage} src={data.image}></img>
                     </div>
-                    <img className={classes.largeimage} src={data.image}></img>
+                    <div className={classes.containerSelectedLowerMiddle}>
+                        <div className={classes.likebtncont} >
+                            <img className={classes.likebtn} src="../heart.png" ></img>
+                        </div>
+                        <img className={classes.largeimage} src={data.image}></img>
+                    </div>
+                    <div className={classes.containerSelectedLowerRight}>
+                        <h2>{data.title}</h2>
+                        <h4>{`${"$"}${data.price}`}</h4>
+                        <br />
+                        <hr className={classes.hr} ></hr>
+                        <div className={classes.quantitybox} >
+                            <p className={classes.qtypara} >Quantity</p>
+                            <Counter value={quantity} onChangeValue={(val: any) => setQuantity(val)} />
+                        </div>
+                        <button className={classes.addcartbtn} onClick={addCart}>ADD TO CART</button>
+                        <button className={classes.buybtn} >BUY IT NOW</button>
+                        <br />
+                        <div className={classes.descbox}>
+                            <h5>Description</h5>
+                            <p>
+                                {data.description}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className={classes.containerSelectedLowerRight}>
-                    <h2>{data.title}</h2>
-                    <h4>{`${"$"}${data.price}`}</h4>
-                    <br />
-                    <hr className={classes.hr} ></hr>
-                    <div className={classes.quantitybox} >
-                        <p className={classes.qtypara} >Quantity</p>
-                        <Counter value={quantity} onChangeValue={(val: any) => setQuantity(val)} />
-                    </div>
-                    <button className={classes.addcartbtn} onClick={addCart}>ADD TO CART</button>
-                    <button className={classes.buybtn} >BUY IT NOW</button>
-                    <br />
-                    <div className={classes.descbox}>
-                        <h5>Description</h5>
-                        <p>
-                            {data.description}
-                        </p>
-                    </div>
+                <div className={classes.cartitem} >
+                    <Drawer
+                        anchor="right"
+                        classes={{ paper: classes.drawerPaper }}
+                        onClose={() => setOpenDrawer(false)}
+                        open={openDrawer}
+                    >
+                        <div className={classes.topcont}>
+                            <Typography className={classes.cart}>Cart</Typography>
+                            <CloseIcon onClick={onClose} />
+                        </div>
+                        <Divider className={classes.divider} />
+                        <CartItem />
+                    </Drawer>
                 </div>
             </div>
-            <div className={classes.cartitem} >
-                <Drawer
-                    anchor="right"
-                    classes={{ paper: classes.drawerPaper }}
-                    onClose={() => setOpenDrawer(false)}
-                    open={openDrawer}
-                >
-                    <div className={classes.topcont}>
-                        <Typography className={classes.cart}>Cart</Typography>
-                        <CloseIcon onClick={onClose} />
-                    </div>
-                    <Divider className={classes.divider} />
-                    <CartItem />
-                </Drawer>
-            </div>
+            {/* <LabelBottomNavigation /> */}
         </div>
     );
 }

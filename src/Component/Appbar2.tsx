@@ -21,6 +21,9 @@ import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from "@mui/material";
 import CartItem from "./cart/cartItem";
+import { useNavigate } from "react-router-dom";
+import RouteNames from "../router/routerNames";
+
 const useStyles = makeStyles({
   mainContainers: {
     height: "145px",
@@ -35,8 +38,8 @@ const useStyles = makeStyles({
     "&.css-2ulfj5-MuiTypography-root": {
       marginTop: "12px",
       fontSize: "40px",
-      marginLeft: "450px",
-      marginRight: "450px",
+      marginLeft: "475px",
+      marginRight: "425px",
       fontFamily: "serif",
       fontWeight: "bolder",
       width: "300px",
@@ -152,11 +155,15 @@ const useStyles = makeStyles({
       fontFamily: " sans-serif",
       fontWeight: "bold",
     },
+  },
+  namecont: {
+    width: "fit-content"
   }
 });
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar1() {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = React.useState<Boolean | any>(false);
   const onClose = (event: any) => {
     setOpenDrawer(false)
@@ -170,9 +177,11 @@ export default function ButtonAppBar() {
       <Toolbar className={classes.tool}>
         <div className={classes.theFancy}>
           <SearchIcon className={classes.searchIcon} />
-          <Typography variant="h6" className={classes.free}>
-            THE FANCY
-          </Typography>
+          <div className={classes.namecont} onClick={(e) => { navigate(RouteNames.HOME) }} >
+            <Typography variant="h6" className={classes.free}>
+              THE FANCY
+            </Typography>
+          </div>
           <Drawer
             anchor="right"
             classes={{ paper: classes.drawerPaper }}
@@ -187,7 +196,7 @@ export default function ButtonAppBar() {
             <CartItem />
           </Drawer>
 
-          <PersonOutlineOutlinedIcon className={classes.personIcon} />
+          <PersonOutlineOutlinedIcon className={classes.personIcon} onClick={(e) => { navigate(RouteNames.LOGIN) }} />
           <WorkOutlineOutlinedIcon className={classes.workIcon} onClick={handleClick} ></WorkOutlineOutlinedIcon>
         </div>
         <div className={classes.listClass}>
