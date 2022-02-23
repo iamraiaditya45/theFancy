@@ -71,3 +71,4 @@ function Pagination({ showPerPage, onPaginationChange }: any) {
 }
 
 export default Pagination;
+

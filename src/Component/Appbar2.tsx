@@ -300,11 +300,6 @@ export default function ButtonAppBar() {
     // setPagination({ start: start, end: end });
     setPage(page+1);
   };
-  // const onPaginationChange = ({start, end}:any) => {
-  //   setPagination({ start: start, end: end });
-  //   console.log(start, end);
-  // };
-
   return (
     <>
       <AppBar position="static" className={classes.mainContainers}>
@@ -347,7 +342,7 @@ export default function ButtonAppBar() {
             </Drawer>
             <Link
       to="/signup"
-      style={{ textDecoration: "none", color: "black" }}
+      style={{  color: "white" }}
     >
             <PersonOutlineOutlinedIcon className={classes.personIcon} />
             </Link>

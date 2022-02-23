@@ -7,7 +7,7 @@ import MainComponent from "./Component/MainComponent";
 import { makeStyles } from "@mui/styles";
 import { Routes, Route } from "react-router-dom";
 import Signup from "./Component/signUp";
-
+import Login from "./Component/logIn";
 const useStyles = makeStyles(() => ({
   mainDiv: {
     width: "100%",
@@ -40,6 +40,7 @@ function MyApp() {
         <Routes>
           <Route path="/" element={<MainComponent />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Box>
