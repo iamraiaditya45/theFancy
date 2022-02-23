@@ -19,7 +19,7 @@ import Kids from "./Kids";
 import Sale from "./Sale";
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
-import { Divider } from "@mui/material";
+import { Divider, Modal } from "@mui/material";
 import CartItem from "./cart/cartItem";
 import { useNavigate } from "react-router-dom";
 import RouteNames from "../router/routerNames";
@@ -156,6 +156,19 @@ const useStyles = makeStyles({
       fontWeight: "bold",
     },
   },
+  input: {
+    position: "absolute",
+    top: "111px",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "100%",
+    height: "145px",
+    border: "none",
+    boxShadow: "1px #DCDCDC	",
+    padding: "0px,200px,0px 200px",
+    fontSize: "30px",
+    outline: "none",
+  },
   namecont: {
     width: "fit-content"
   }
@@ -172,11 +185,43 @@ export default function ButtonAppBar1() {
     setOpenDrawer(!openDrawer)
     console.log("test")
   }
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [filter, setFilter] = React.useState("");
+  const searchText = (event: any) => {
+    setFilter(event.target.value);
+  };
+
+  // let dataSearch = searchdata.filter((item: any) => {
+  //   return Object.keys(item).some((key) =>
+  //     item[key]
+  //       .toString()
+  //       .toLowerCase()
+  //       .includes(filter.toString().toLowerCase())
+  //   );
+  // });
   return (
     <AppBar position="static" className={classes.mainContainers}>
       <Toolbar className={classes.tool}>
         <div className={classes.theFancy}>
-          <SearchIcon className={classes.searchIcon} />
+          <SearchIcon className={classes.searchIcon} onClick={handleOpen} />
+          <Modal
+            keepMounted
+            open={open}
+            onClose={handleClose}
+
+          >
+            <input
+              className={classes.input}
+              type="text"
+              placeholder="Search"
+              value={filter}
+              onChange={(event: any) => {
+                searchText(event)
+              }}
+            />
+          </Modal>
           <div className={classes.namecont} onClick={(e) => { navigate(RouteNames.HOME) }} >
             <Typography variant="h6" className={classes.free}>
               THE FANCY
@@ -213,6 +258,7 @@ export default function ButtonAppBar1() {
           </List>
         </div>
       </Toolbar>
-    </AppBar>
+    </AppBar >
+
   );
 }

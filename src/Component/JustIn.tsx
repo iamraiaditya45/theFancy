@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import RouteNames from '../router/routerNames';
 import ButtonAppBar from './Appbar1';
 import ButtonAppBar1 from './Appbar2';
-import LabelBottomNavigation from './Footer';
 
 // const isFavourite = () => (true);
 const useStyles = makeStyles(() => ({
@@ -184,7 +183,7 @@ export default function BeerCard() {
     className={classes.imgStyle}
   /> */}
                   </div>
-                  <img className={classes.imgStyle} src={item.image} />
+                  <img className={classes.imgStyle} src={item.image} alt="" />
                   <CardContent>
                     <Typography gutterBottom align="center" component="h2">
                       {item.id}
