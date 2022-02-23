@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Divider, Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -120,9 +120,13 @@ const CartItem = () => {
   }
 
   const dataToSend = () => {
-
+    let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com";
+    let uid = localStorage.getItem("uid");
+    if (localStorage?.uid) {
+      apiurl = `${apiurl}/${uid}.json`;
+    }
     console.log("button clicked and function called")
-    axios.post("https://thefancy-3e4f8-default-rtdb.firebaseio.com/usercartdata.json", cartItems)
+    axios.post(apiurl, cartItems)
       .then((resp) => {
         if (resp.status === 200) {
           console.log("Data Saved Successfully")
@@ -132,6 +136,25 @@ const CartItem = () => {
         console.log("Data Error")
       })
   }
+
+  useEffect(() => {
+    let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com";
+    let uid = localStorage.getItem("uid");
+    if (localStorage?.uid) {
+      apiurl = `${apiurl}/${uid}.json`;
+    }
+    axios.get(apiurl)
+      .then((resp) => {
+        if (resp.status === 200) {
+          console.log("user data fetched is ", resp)
+          cartItems(resp.data)
+          console.log("newcart", cartItems)
+        }
+      })
+      .catch((err) => {
+        console.log("error is ", err)
+      })
+  }, [])
 
   return (
     <>

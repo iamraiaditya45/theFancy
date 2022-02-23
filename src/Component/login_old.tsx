@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
         flexDirection: "column",
     },
     box: {
+        height: "550px",
         marginTop: "80px"
     },
     checkoutButton: {
@@ -70,7 +71,7 @@ const useStyles = makeStyles(() => ({
     },
 
 }));
-export default function Login() {
+export default function Login_old() {
     const classes = useStyles();
     const navigate = useNavigate();
     return (

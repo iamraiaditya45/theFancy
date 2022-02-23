@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
         }
     }
 }));
-export default function Signup() {
+export default function Signup_old() {
     const navigate = useNavigate();
     const classes = useStyles();
     return (

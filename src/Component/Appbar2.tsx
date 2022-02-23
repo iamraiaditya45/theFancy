@@ -23,6 +23,7 @@ import { Divider, Modal } from "@mui/material";
 import CartItem from "./cart/cartItem";
 import { useNavigate } from "react-router-dom";
 import RouteNames from "../router/routerNames";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   mainContainers: {
@@ -175,6 +176,7 @@ const useStyles = makeStyles({
 });
 
 export default function ButtonAppBar1() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = React.useState<Boolean | any>(false);
