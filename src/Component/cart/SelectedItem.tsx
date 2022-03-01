@@ -258,6 +258,7 @@ export default function SelectedItem() {
                     } else {//add this product as new
                         addProductToFirebase({ ...data, ...{ quantity } });
                     }
+                    setOpenDrawer(!openDrawer);
                 }
             })
             .catch((err) => {

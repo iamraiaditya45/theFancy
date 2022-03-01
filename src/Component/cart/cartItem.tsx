@@ -9,6 +9,8 @@ import firebase from "firebase/compat/app";
 import 'firebase/database'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
+import { collection, doc, addDoc, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import { firestoreDB } from '../../authentication/firebase';
 
 const useStyles = makeStyles(() => ({
   beer: {
@@ -104,11 +106,36 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CartItem = () => {
-  const { cartItems } = useSelector((state: any) => state.cartReducer);
+  // const { cartItems } = useSelector((state: any) => state.cartReducer);
   const dispatch = useDispatch();
   const [cartDataToShow, SetCartdataToShow] = useState();
+  const [cartItems, setCartItems] = useState<any[]>([]);
+  const { uid } = localStorage;
+  const userProductsCollection = collection(doc(collection(firestoreDB, 'users-cart'), uid), 'user-products')
+
 
   const classes = useStyles();
+
+  const getCartData = () => {
+    const arrToFill: any[] = [];
+    getDocs(userProductsCollection)
+      .then((resp) => {
+        if (resp) {
+          resp.forEach((item) => {
+            arrToFill.push(item.data())
+          })
+          setCartItems([...arrToFill])
+        }
+      })
+      .catch((err) => {
+        console.log("data adding erro in firebbase", err);
+      });
+  }
+
+
+  useEffect(() => {
+    getCartData()
+  }, [])
 
   const getTotal = () => {
     let { totalAmount } = cartItems.reduce((accum: any, currval: any) => {
@@ -124,28 +151,8 @@ const CartItem = () => {
     dispatch({ type: "UpdateCart", payload: { cartItems: [...oldData] } })
   }
 
-  const dataToSend = () => {
-    let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com/User Cart Data";
-    let uid = localStorage.getItem("uid");
-    console.log("uid is", uid)
-    if (localStorage?.uid) {
-      apiurl = `${apiurl}/${uid}.json`;
-    }
-    console.log("button clicked and function called")
-    axios.post(apiurl, cartItems)
-      .then((resp) => {
-        if (resp.status === 200) {
-          console.log("Data Saved Successfully")
-        }
-      })
-      .catch((err) => {
-        console.log("Data Error")
-      })
 
-    // if (localStorage?.uid) {
-    //   firebase.database().ref(`${"User Cart Data"}/${uid}`).push(cartItems).catch(alert);
-    // }
-  }
+
 
   useEffect(() => {
     let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com";
@@ -195,7 +202,6 @@ const CartItem = () => {
         <Typography className={classes.shippingTaxes}>
           Shipping, taxes, and discount codes calculated at checkout.
         </Typography>
-        <Button variant="contained" className={classes.checkoutButton} onClick={dataToSend} >Send data to Firebase</Button>
         <Button variant="contained" className={classes.checkoutButton}>
           Checkout
         </Button>
