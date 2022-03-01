@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import SearchIcon from "@mui/icons-material/Search";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { Logout } from "@mui/icons-material"
 import Dropdown from './Dropdown';
 import Dropdown2 from './Dropdown2';
 import Dropdown1 from "./Dropdown1";
@@ -25,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import RouteNames from "../router/routerNames";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { firebaseAuth } from "../authentication/firebase";
 
 const useStyles = makeStyles({
   mainContainers: {
@@ -197,6 +199,12 @@ export default function ButtonAppBar1() {
 
   const { search } = useSelector((state: any) => state.productsReducer)
 
+  const logoutUser = () => {
+    firebaseAuth.signOut();
+    localStorage.clear();
+    navigate('/login')
+  }
+
   return (
     <AppBar position="static" className={classes.mainContainers}>
       <Toolbar className={classes.tool}>
@@ -239,6 +247,7 @@ export default function ButtonAppBar1() {
 
           <PersonOutlineOutlinedIcon className={classes.personIcon} onClick={(e) => { navigate(RouteNames.LOGIN) }} />
           <WorkOutlineOutlinedIcon className={classes.workIcon} onClick={handleClick} ></WorkOutlineOutlinedIcon>
+          <Logout className={classes.personIcon} onClick={(e) => logoutUser()} />
         </div>
         <div className={classes.listClass}>
           <List className={classes.flexContainer}>
