@@ -1,4 +1,3 @@
-import classes from '*.module.css';
 import React from 'react';
 
 export interface IErrorTextProps {
@@ -11,7 +10,7 @@ const ErrorText: React.FunctionComponent<IErrorTextProps> = props => {
     if (error === '') return null;
 
     return (
-        <small style={{color:"red", marginTop:"15px",textAlign:"center"}}>
+        <small style={{ color: "red", marginTop: "15px", textAlign: "center" }}>
             {error}
         </small>
     );

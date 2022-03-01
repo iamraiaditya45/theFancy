@@ -23,7 +23,8 @@ import { Divider, Modal } from "@mui/material";
 import CartItem from "./cart/cartItem";
 import { useNavigate } from "react-router-dom";
 import RouteNames from "../router/routerNames";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   mainContainers: {
@@ -185,24 +186,17 @@ export default function ButtonAppBar1() {
   };
   const handleClick = (event: any) => {
     setOpenDrawer(!openDrawer)
-    console.log("test")
+    // console.log("test")
   }
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [filter, setFilter] = React.useState("");
   const searchText = (event: any) => {
-    setFilter(event.target.value);
+    dispatch({ type: "UpdateProducts", payload: { search: event.target.value } });
   };
 
-  // let dataSearch = searchdata.filter((item: any) => {
-  //   return Object.keys(item).some((key) =>
-  //     item[key]
-  //       .toString()
-  //       .toLowerCase()
-  //       .includes(filter.toString().toLowerCase())
-  //   );
-  // });
+  const { search } = useSelector((state: any) => state.productsReducer)
+
   return (
     <AppBar position="static" className={classes.mainContainers}>
       <Toolbar className={classes.tool}>
@@ -218,7 +212,7 @@ export default function ButtonAppBar1() {
               className={classes.input}
               type="text"
               placeholder="Search"
-              value={filter}
+              value={search}
               onChange={(event: any) => {
                 searchText(event)
               }}

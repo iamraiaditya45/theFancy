@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "../App";
-import BeerCard from "../Component/JustIn";
 import SelectedItem from "../Component/cart/SelectedItem";
 import RouteNames from "./routerNames";
 import Login from "../Component/logIn";
 import Signup from "../Component/signUp"
+import BeerCard from "../Component/Justin";
 
 export default function Router() {
     return (

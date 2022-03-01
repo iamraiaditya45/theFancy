@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Divider, Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Counter from "../counter";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import firebase from "firebase/compat/app";
+import 'firebase/database'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
 const useStyles = makeStyles(() => ({
   beer: {
@@ -102,6 +106,7 @@ const useStyles = makeStyles(() => ({
 const CartItem = () => {
   const { cartItems } = useSelector((state: any) => state.cartReducer);
   const dispatch = useDispatch();
+  const [cartDataToShow, SetCartdataToShow] = useState();
 
   const classes = useStyles();
 
@@ -120,8 +125,9 @@ const CartItem = () => {
   }
 
   const dataToSend = () => {
-    let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com";
+    let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com/User Cart Data";
     let uid = localStorage.getItem("uid");
+    console.log("uid is", uid)
     if (localStorage?.uid) {
       apiurl = `${apiurl}/${uid}.json`;
     }
@@ -135,20 +141,23 @@ const CartItem = () => {
       .catch((err) => {
         console.log("Data Error")
       })
+
+    // if (localStorage?.uid) {
+    //   firebase.database().ref(`${"User Cart Data"}/${uid}`).push(cartItems).catch(alert);
+    // }
   }
 
   useEffect(() => {
     let apiurl = "https://thefancy-3e4f8-default-rtdb.firebaseio.com";
     let uid = localStorage.getItem("uid");
     if (localStorage?.uid) {
-      apiurl = `${apiurl}/${uid}.json`;
+      apiurl = `${apiurl}/${"User Cart Data"}/${uid}.json`;
     }
     axios.get(apiurl)
       .then((resp) => {
         if (resp.status === 200) {
           console.log("user data fetched is ", resp)
-          cartItems(resp.data)
-          console.log("newcart", cartItems)
+          console.log("Cart Data To Show", resp.data)
         }
       })
       .catch((err) => {

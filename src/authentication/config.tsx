@@ -1,5 +1,5 @@
-const config ={
-  firebase:{
+const config = {
+  firebase: {
     apiKey: "AIzaSyBgl1l1RnUL2nCobTjPd_LNWq_UDXdKuPI",
     authDomain: "thefancy-3e4f8.firebaseapp.com",
     projectId: "thefancy-3e4f8",
@@ -9,4 +9,9 @@ const config ={
   }
 }
 
+
 export default config;
+
+
+
+
