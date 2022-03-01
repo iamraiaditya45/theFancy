@@ -10,7 +10,6 @@ import { makeStyles } from "@mui/styles";
 import { FormGroup, Typography } from "@mui/material";
 import { signup } from "../authentication/config";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../authentication/firebase";
 import logging from "../authentication/logging";
 import ErrorText from '../authentication/error'
 import Appbar1 from '../Component/Appbar1'
@@ -18,6 +17,8 @@ import Appbar2 from '../Component/Appbar2'
 import Footer from '../Component/Footer'
 import ButtonAppBar from "../Component/Appbar1";
 import ButtonAppBar1 from "../Component/Appbar2";
+import { firebaseAuth } from "../authentication/firebase";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 const useStyles = makeStyles(() => ({
   box: {
     // marginLeft: "650px",
@@ -91,15 +92,14 @@ export default function Signup() {
 
     setRegistering(true);
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(firebaseAuth, email, password)
       .then((result) => {
-        logging.info(result);
-        navigate("/login");
+        console.log("createUserWithEmailAndPassword success", result);
+        localStorage.setItem("uid", result?.user?.uid);
+        navigate("/");
       })
       .catch((error) => {
-        logging.error(error);
-
+        console.log("createUserWithEmailAndPassword error", error);
         if (error.code.includes("auth/weak-password")) {
           setError("Please enter a stronger password.");
         } else if (error.code.includes("auth/email-already-in-use")) {

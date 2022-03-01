@@ -3,7 +3,6 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
-import { auth } from "../authentication/firebase";
 import logging from "../authentication/logging";
 import ErrorText from '../authentication/error'
 import Appbar1 from '../Component/Appbar1'
@@ -12,6 +11,9 @@ import Footer from '../Component/Footer'
 import { Link, useNavigate } from "react-router-dom";
 import ButtonAppBar from "../Component/Appbar1";
 import ButtonAppBar1 from "../Component/Appbar2";
+import { firebaseAuth } from "../authentication/firebase";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 const useStyles = makeStyles(() => ({
   box: {
     // marginLeft: "650px",
@@ -73,18 +75,17 @@ export default function Login() {
 
   const Navigate = useNavigate();
 
-  const signInWithEmailAndPassword = () => {
+  const signInWithEmailPassword = () => {
     if (error !== '') setError('');
     setAuthenticating(true);
-    auth.signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(firebaseAuth, email, password)
       .then(result => {
-        logging.info(result);
-        // console.log("result is ", result.user.multiFactor.user.uid)
-        localStorage.setItem("uid", result.user.multiFactor.user.uid)
+        console.log("signInWithEmailAndPassword success", result);
+        localStorage.setItem("uid", result?.user?.uid);
         Navigate('/');
       })
       .catch(error => {
-        logging.error(error);
+        console.log("signInWithEmailAndPassword error", error);
         setAuthenticating(false);
         setError(error.message);
       });
@@ -121,7 +122,7 @@ export default function Login() {
             disabled={authenticating}
             color="success"
             block
-            onClick={() => signInWithEmailAndPassword()}
+            onClick={() => signInWithEmailPassword()}
             className={classes.btnCreate}
           >
             Login
