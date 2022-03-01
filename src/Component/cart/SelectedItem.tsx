@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ButtonAppBar from '../Appbar1';
 import ButtonAppBar1 from '../Appbar2';
 import LabelBottomNavigation from '../Footer';
+import { collection, doc, addDoc, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import { firestoreDB } from '../../authentication/firebase';
 
 const useStyles = makeStyles(() => ({
     cardContainer: {
@@ -237,27 +239,51 @@ export default function SelectedItem() {
     const { id } = useParams();
     const [data, setData] = useState<any>(null);
     const [quantity, setQuantity] = useState(1);
-    const dispatch = useDispatch();
-    const { cartItems } = useSelector((state: any) => state.cartReducer)
+    const { uid } = localStorage;
+    const userProductsCollection = collection(doc(collection(firestoreDB, 'users-cart'), uid), 'user-products')
 
     const [openDrawer, setOpenDrawer] = React.useState<Boolean | any>(false);
     const onClose = (event: any) => {
         setOpenDrawer(false)
     };
+
     const addCart = () => {
-        let oldData = [...cartItems];
-        let find = oldData.findIndex(a => a.id === data.id);
-        let dataToAdd = {};
-        if (find > -1) {//item already exist & update quantity
-            oldData[find]['quantity'] = oldData[find]['quantity'] + 1;
-            dispatch({ type: "UpdateCart", payload: { cartItems: [...oldData] } });
-        } else {//item does not exist and add item
-            dataToAdd = { ...data, ...{ quantity } };
-            dispatch({ type: "UpdateCart", payload: { cartItems: [...cartItems, ...[dataToAdd]] } })
-        }
-        setOpenDrawer(!openDrawer);
+        getDocs(query(userProductsCollection, where("id", "==", data.id)))
+            .then((resp) => {
+                if (resp) {
+                    if (resp.docs.length > 0) {//our product already exist
+                        let oldData = resp?.docs[0]?.data();
+                        let newDataToSave = { ...oldData, ...{ quantity: oldData.quantity + 1 } }
+                        updateExistingDoc(resp?.docs[0]?.id, newDataToSave);
+                    } else {//add this product as new
+                        addProductToFirebase({ ...data, ...{ quantity } });
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log("data adding erro in firebbase", err);
+            });
     }
 
+    const updateExistingDoc = (id: string, newData: any) => {
+        updateDoc(doc(userProductsCollection, id), newData)
+            .then((resp) => {
+                console.log("data updated to firebase", resp);
+            })
+            .catch((err) => {
+                console.log("data updated erro in firebbase", err);
+            });
+    }
+
+    const addProductToFirebase = (product: any) => {
+        addDoc(userProductsCollection, product)
+            .then((resp) => {
+                console.log("data added to firebase", resp);
+            })
+            .catch((err) => {
+                console.log("data adding erro in firebbase", err);
+            });
+    }
 
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${id}`)
@@ -307,7 +333,7 @@ export default function SelectedItem() {
                             <p className={classes.qtypara} >Quantity</p>
                             <Counter value={quantity} onChangeValue={(val: any) => setQuantity(val)} />
                         </div>
-                        <button className={classes.addcartbtn} onClick={addCart}>ADD TO CART</button>
+                        <button className={classes.addcartbtn} onClick={() => addCart()}>ADD TO CART</button>
                         <button className={classes.buybtn} >BUY IT NOW</button>
                         <br />
                         <div className={classes.descbox}>
